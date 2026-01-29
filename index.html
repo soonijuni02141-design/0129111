@@ -20,18 +20,18 @@
             justify-content: center;
             font-family: 'Noto Serif KR', serif;
             background: linear-gradient(180deg, 
-                #2c3e50 0%, 
-                #34495e 20%, 
-                #5d6d7e 40%, 
-                #85929e 60%, 
-                #aeb6bf 80%, 
-                #d5d8dc 100%);
+                #0a0a1a 0%, 
+                #0d1033 20%, 
+                #1a1a4e 40%, 
+                #16213e 60%, 
+                #0f0f23 80%, 
+                #050510 100%);
             position: relative;
             overflow: hidden;
         }
 
-        /* 겨울 바다 배경 효과 */
-        .nature-bg {
+        /* 우주 배경 효과 */
+        .space-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -41,105 +41,135 @@
             z-index: 0;
         }
 
-        /* 떨어지는 눈송이 */
-        .snowflake {
+        /* 별들 */
+        .star {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            opacity: 0.8;
-            animation: snowfall linear infinite;
-            color: white;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
         }
 
-        @keyframes snowfall {
-            0% {
-                transform: translateY(-100px) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(100vh) translateX(50px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* 차가운 빛 효과 */
-        .light-rays {
-            position: fixed;
-            top: -50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(200, 220, 255, 0.15) 0%, transparent 50%);
-            transform: translateX(-50%);
-            animation: shimmer 8s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
+        @keyframes twinkle {
             0%, 100% {
                 opacity: 0.3;
+                transform: scale(1);
             }
             50% {
-                opacity: 0.6;
+                opacity: 1;
+                transform: scale(1.2);
             }
         }
 
-        /* 파도 효과 */
-        .waves {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            z-index: 3;
-            overflow: hidden;
-        }
-
-        .wave {
+        /* 유성 */
+        .shooting-star {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234a6572' fill-opacity='0.6' d='M0,160L48,170.7C96,181,192,203,288,192C384,181,480,139,576,138.7C672,139,768,181,864,181.3C960,181,1056,139,1152,128C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-            background-size: 50% 100%;
-            animation: wave 15s linear infinite;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, white, transparent);
+            opacity: 0;
+            animation: shoot linear infinite;
         }
 
-        .wave:nth-child(2) {
-            bottom: 10px;
-            opacity: 0.5;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235d7a8c' fill-opacity='0.5' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,181.3C1248,171,1344,181,1392,186.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-            background-size: 50% 100%;
-            animation: wave 12s linear reverse infinite;
-        }
-
-        .wave:nth-child(3) {
-            bottom: 20px;
-            opacity: 0.3;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%236d8a9c' fill-opacity='0.4' d='M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,229.3C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
-            background-size: 50% 100%;
-            animation: wave 18s linear infinite;
-        }
-
-        @keyframes wave {
+        @keyframes shoot {
             0% {
-                transform: translateX(0);
+                opacity: 0;
+                transform: translateX(0) translateY(0);
+            }
+            5% {
+                opacity: 1;
+            }
+            20% {
+                opacity: 0;
+                transform: translateX(300px) translateY(300px);
             }
             100% {
-                transform: translateX(-50%);
+                opacity: 0;
+                transform: translateX(300px) translateY(300px);
+            }
+        }
+
+        /* 은하수 효과 */
+        .milky-way {
+            position: fixed;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                transparent 40%,
+                rgba(138, 100, 170, 0.05) 45%,
+                rgba(100, 130, 200, 0.08) 50%,
+                rgba(138, 100, 170, 0.05) 55%,
+                transparent 60%,
+                transparent 100%
+            );
+            transform: rotate(-20deg);
+            z-index: 0;
+        }
+
+        /* 성운 효과 */
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .nebula-1 {
+            top: 10%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #9b59b6, transparent);
+        }
+
+        .nebula-2 {
+            bottom: 20%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #3498db, transparent);
+        }
+
+        .nebula-3 {
+            top: 40%;
+            left: 30%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #e74c3c, transparent);
+            opacity: 0.08;
+        }
+
+        /* 빛나는 효과 */
+        .glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(100, 100, 255, 0.1) 0%, transparent 50%);
+            transform: translate(-50%, -50%);
+            animation: pulse-glow 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) scale(1.1);
             }
         }
 
         /* 메인 카드 */
         .card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 60px 50px;
@@ -147,9 +177,10 @@
             width: 90%;
             text-align: center;
             box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.15),
-                inset 0 1px 1px rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 0 100px rgba(100, 100, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 10;
             position: relative;
             animation: float 6s ease-in-out infinite;
@@ -166,7 +197,7 @@
 
         .date {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(200, 200, 255, 0.7);
             margin-bottom: 30px;
             letter-spacing: 3px;
         }
@@ -190,7 +221,7 @@
             font-size: 1.8rem;
             line-height: 2;
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 0 20px rgba(150, 150, 255, 0.5);
             margin-bottom: 30px;
             font-weight: 400;
         }
@@ -198,13 +229,13 @@
         .divider {
             width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            background: linear-gradient(90deg, transparent, rgba(150, 150, 255, 0.6), transparent);
             margin: 25px auto;
         }
 
         .subtitle {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(200, 200, 255, 0.5);
             margin-top: 20px;
         }
 
@@ -221,118 +252,159 @@
             }
         }
 
-        /* 갈매기 */
-        .seagull {
+        /* 행성들 */
+        .planet {
             position: fixed;
-            font-size: 30px;
-            opacity: 0.4;
-            z-index: 2;
-            animation: flyBird 20s linear infinite;
-        }
-
-        .seagull:nth-child(1) {
-            top: 15%;
-            animation-delay: 0s;
-        }
-
-        .seagull:nth-child(2) {
-            top: 25%;
-            animation-delay: 7s;
-            font-size: 25px;
-        }
-
-        .seagull:nth-child(3) {
-            top: 10%;
-            animation-delay: 14s;
-            font-size: 20px;
-        }
-
-        @keyframes flyBird {
-            0% {
-                left: -50px;
-                transform: scaleX(1);
-            }
-            100% {
-                left: calc(100% + 50px);
-                transform: scaleX(1);
-            }
-        }
-
-        /* 안개 효과 */
-        .fog {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                rgba(200, 210, 220, 0.3) 0%, 
-                transparent 30%, 
-                transparent 70%, 
-                rgba(200, 210, 220, 0.2) 100%);
+            border-radius: 50%;
+            opacity: 0.6;
             z-index: 1;
-            pointer-events: none;
+        }
+
+        .planet-1 {
+            top: 8%;
+            right: 8%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            box-shadow: 0 0 30px rgba(243, 156, 18, 0.3);
+        }
+
+        .planet-2 {
+            bottom: 15%;
+            left: 5%;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .planet-3 {
+            top: 25%;
+            left: 8%;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            box-shadow: 0 0 15px rgba(155, 89, 182, 0.3);
+        }
+
+        /* 토성 링 */
+        .saturn {
+            top: 60%;
+            right: 5%;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f5d6ba, #d4a574);
+            box-shadow: 0 0 25px rgba(245, 214, 186, 0.3);
+        }
+
+        .saturn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 90px;
+            height: 20px;
+            border: 2px solid rgba(245, 214, 186, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotateX(70deg);
+        }
+
+        /* 달 */
+        .moon {
+            position: fixed;
+            top: 12%;
+            left: 15%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            border-radius: 50%;
+            box-shadow: 
+                inset -10px -10px 20px rgba(0,0,0,0.2),
+                0 0 40px rgba(236, 240, 241, 0.3);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            width: 15px;
+            height: 15px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 40px;
+            width: 10px;
+            height: 10px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-    <div class="fog"></div>
-    <div class="light-rays"></div>
-    <div class="nature-bg" id="natureBg"></div>
+    <div class="milky-way"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    <div class="glow"></div>
+    <div class="space-bg" id="spaceBg"></div>
     
-    <div class="seagull">🕊️</div>
-    <div class="seagull">🕊️</div>
-    <div class="seagull">🕊️</div>
+    <div class="moon"></div>
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+    <div class="planet saturn"></div>
 
     <div class="card">
         <div class="date" id="date"></div>
-        <div class="icon" id="icon">🌊</div>
+        <div class="icon" id="icon">🌌</div>
         <div class="divider"></div>
         <p class="quote" id="quote"></p>
         <div class="divider"></div>
         <p class="subtitle">오늘도 당신을 응원합니다</p>
     </div>
 
-    <div class="waves">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-    </div>
-
     <script>
-        // 응원 문구 배열 (겨울 바다 테마)
+        // 응원 문구 배열 (우주 테마)
         const quotes = [
-            { text: "겨울 바다처럼, 당신의 마음도 깊고 고요한 힘을 품고 있습니다.", icon: "🌊" },
-            { text: "차가운 파도도 끊임없이 밀려옵니다. 포기하지 마세요.", icon: "🌊" },
-            { text: "겨울 바다의 수평선처럼, 당신의 가능성은 끝이 없습니다.", icon: "🌅" },
-            { text: "파도는 바위를 깎아 조약돌을 만듭니다. 시간이 당신을 빛나게 해줄 거예요.", icon: "🪨" },
-            { text: "가장 추운 바다에서도 생명은 꿈틀댑니다.", icon: "🐚" },
-            { text: "밀려오는 파도처럼, 새로운 기회는 계속 찾아옵니다.", icon: "🌊" },
-            { text: "겨울 바다의 고요함 속에서 진정한 자신을 발견하세요.", icon: "❄️" },
-            { text: "바다는 모든 강을 받아들입니다. 당신도 그런 넓은 마음을 가지세요.", icon: "💙" },
-            { text: "등대는 가장 어두운 밤에 가장 밝게 빛납니다.", icon: "🏠" },
-            { text: "겨울 바닷바람이 차갑지만, 그 바람이 당신을 단단하게 만들어요.", icon: "💨" },
-            { text: "조개는 모래알의 고통으로 진주를 만듭니다.", icon: "🦪" },
-            { text: "파도가 물러가도 바다는 그 자리에 있습니다. 당신도 그래요.", icon: "🌊" },
-            { text: "겨울 바다의 새벽은 누구보다 아름답습니다.", icon: "🌅" },
-            { text: "갈매기는 폭풍 속에서도 날아오릅니다.", icon: "🕊️" },
-            { text: "바다 위의 눈처럼, 당신의 순수함을 잃지 마세요.", icon: "❄️" },
-            { text: "깊은 바다일수록 파도에 흔들리지 않습니다.", icon: "🌊" },
-            { text: "조류가 바뀌듯, 당신의 상황도 곧 좋아질 거예요.", icon: "🔄" },
-            { text: "바다는 끝없이 넓지만, 첫 발걸음은 모래사장에서 시작됩니다.", icon: "👣" },
-            { text: "겨울 바다의 침묵 속에도 생명의 소리가 있습니다.", icon: "🐋" },
-            { text: "얼음 위에도 햇빛은 비춥니다. 당신에게도 따뜻함이 올 거예요.", icon: "☀️" },
-            { text: "항구에 머물러 있는 배는 안전하지만, 그것이 배의 목적은 아닙니다.", icon: "⛵" },
-            { text: "바다의 깊이를 알 수 없듯, 당신의 잠재력도 무한합니다.", icon: "🌊" },
-            { text: "겨울 바다 위 달빛처럼, 당신은 어둠 속에서도 빛나고 있어요.", icon: "🌙" },
-            { text: "해류는 보이지 않아도 바다를 움직입니다. 보이지 않는 노력도 그래요.", icon: "💫" },
-            { text: "밀물과 썰물처럼, 삶에도 리듬이 있습니다. 지금은 쉬어가도 괜찮아요.", icon: "🌊" },
-            { text: "겨울 바다의 파도 소리는 세상에서 가장 솔직한 위로입니다.", icon: "🎵" },
-            { text: "모래성은 무너져도 다시 쌓을 수 있습니다.", icon: "🏖️" },
-            { text: "수평선 너머에도 세상은 계속됩니다. 희망을 잃지 마세요.", icon: "🌅" },
-            { text: "겨울 바다도 봄이 오면 따뜻해집니다.", icon: "🌸" },
-            { text: "바다의 소금기처럼, 당신의 눈물도 당신을 강하게 만들어요.", icon: "💧" },
-            { text: "폭풍이 지나면 바다는 더 맑아집니다. 당신도 그럴 거예요.", icon: "⛈️" }
+            { text: "당신은 138억년 우주 역사 속 단 한 번뿐인 기적입니다.", icon: "✨" },
+            { text: "별은 가장 어두운 밤에 가장 밝게 빛납니다. 당신도 그래요.", icon: "⭐" },
+            { text: "우주처럼 당신의 가능성도 무한합니다.", icon: "🌌" },
+            { text: "모든 별은 한때 우주 먼지였습니다. 지금의 당신도 빛날 준비를 하고 있어요.", icon: "💫" },
+            { text: "달은 스스로 빛나지 않아도 밤하늘을 밝힙니다.", icon: "🌙" },
+            { text: "우주의 팽창처럼, 당신의 꿈도 계속 커지고 있어요.", icon: "🚀" },
+            { text: "은하수의 별들처럼, 당신의 가능성은 셀 수 없이 많습니다.", icon: "🌟" },
+            { text: "블랙홀도 빛을 품고 있습니다. 어둠 속에도 희망은 있어요.", icon: "🕳️" },
+            { text: "혜성은 긴 여정 끝에 아름다운 꼬리를 남깁니다.", icon: "☄️" },
+            { text: "우주는 텅 빈 것 같지만, 가능성으로 가득 차 있습니다.", icon: "🌠" },
+            { text: "태양도 매일 떠오르기 위해 어둠을 견딥니다.", icon: "☀️" },
+            { text: "당신은 별의 먼지로 만들어졌습니다. 당신 안에 우주가 있어요.", icon: "✨" },
+            { text: "토성의 고리처럼, 당신을 둘러싼 것들이 당신을 더 아름답게 해요.", icon: "🪐" },
+            { text: "빛은 어둠이 있어야 보입니다. 힘든 시간이 당신을 빛나게 해줄 거예요.", icon: "💡" },
+            { text: "우주 비행사도 첫 발걸음은 지구에서 시작했습니다.", icon: "👨‍🚀" },
+            { text: "별자리는 연결될 때 의미를 갖습니다. 당신의 노력들도 그래요.", icon: "⭐" },
+            { text: "새로운 별은 매일 태어납니다. 오늘이 당신의 시작일 수 있어요.", icon: "🌟" },
+            { text: "북극성처럼, 당신도 누군가의 길잡이가 될 수 있어요.", icon: "⭐" },
+            { text: "우주의 침묵 속에도 무수한 별들이 빛나고 있습니다.", icon: "🌌" },
+            { text: "중력이 우주를 붙잡듯, 당신의 의지가 당신을 지탱해줄 거예요.", icon: "🌍" },
+            { text: "오로라는 폭풍 후에 더 아름답게 빛납니다.", icon: "🌈" },
+            { text: "화성까지의 거리도 한 걸음씩 가면 닿을 수 있습니다.", icon: "🔴" },
+            { text: "우주는 끝없이 넓지만, 당신이라는 존재는 단 하나뿐이에요.", icon: "💎" },
+            { text: "별빛은 수만 광년을 여행해 우리에게 옵니다. 인내의 힘이에요.", icon: "✨" },
+            { text: "달의 뒷면도 햇빛을 받습니다. 보이지 않아도 빛은 닿아요.", icon: "🌓" },
+            { text: "슈퍼노바는 폭발하며 새로운 원소를 만듭니다. 끝은 곧 시작이에요.", icon: "💥" },
+            { text: "우주 정거장도 작은 부품들이 모여 완성됩니다.", icon: "🛸" },
+            { text: "명왕성은 멀리 있어도 여전히 태양계의 일부입니다.", icon: "🔵" },
+            { text: "로켓은 가장 큰 저항을 뚫고 우주로 나아갑니다.", icon: "🚀" },
+            { text: "밤하늘의 어둠이 있어 별이 빛날 수 있습니다.", icon: "🌃" },
+            { text: "우주의 나이는 138억년. 당신의 오늘은 그 역사의 일부예요.", icon: "⏳" }
         ];
 
         // 오늘 날짜에 맞는 문구 선택
@@ -355,20 +427,33 @@
             return today.toLocaleDateString('ko-KR', options);
         }
 
-        // 눈송이 생성
-        function createSnowflakes() {
-            const bg = document.getElementById('natureBg');
-            const snowflakeChars = ['❄', '❅', '❆', '✧', '✦'];
+        // 별 생성
+        function createStars() {
+            const bg = document.getElementById('spaceBg');
             
-            for (let i = 0; i < 30; i++) {
-                const snow = document.createElement('div');
-                snow.className = 'snowflake';
-                snow.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
-                snow.style.left = Math.random() * 100 + '%';
-                snow.style.fontSize = (Math.random() * 15 + 10) + 'px';
-                snow.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                snow.style.animationDelay = Math.random() * 10 + 's';
-                bg.appendChild(snow);
+            // 일반 별들
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                bg.appendChild(star);
+            }
+
+            // 유성
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = Math.random() * 70 + '%';
+                shootingStar.style.top = Math.random() * 50 + '%';
+                shootingStar.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                shootingStar.style.animationDelay = Math.random() * 10 + 's';
+                bg.appendChild(shootingStar);
             }
         }
 
@@ -378,7 +463,7 @@
             document.getElementById('quote').textContent = quote.text;
             document.getElementById('icon').textContent = quote.icon;
             document.getElementById('date').textContent = formatDate();
-            createSnowflakes();
+            createStars();
         }
 
         init();
