@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 응원 한 마디</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif KR', serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 25%, #3d6b4f 50%, #4a7c5f 75%, #5a8d6f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 자연 배경 효과 */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 떨어지는 나뭇잎 */
+        .leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.6;
+            animation: falling linear infinite;
+        }
+
+        .leaf::before {
+            content: '🍃';
+            font-size: 24px;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* 빛 효과 */
+        .light-rays {
+            position: fixed;
+            top: -50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 200, 0.1) 0%, transparent 50%);
+            transform: translateX(-50%);
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* 메인 카드 */
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .date {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .quote {
+            font-size: 1.8rem;
+            line-height: 2;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .author {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            margin: 25px auto;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        /* 반응형 */
+        @media (max-width: 600px) {
+            .card {
+                padding: 40px 30px;
+            }
+            .quote {
+                font-size: 1.4rem;
+            }
+            .icon {
+                font-size: 3rem;
+            }
+        }
+
+        /* 하단 장식 */
+        .footer-decoration {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+            z-index: 1;
+        }
+
+        .tree-silhouette {
+            position: fixed;
+            bottom: -20px;
+            font-size: 100px;
+            opacity: 0.15;
+            z-index: 2;
+        }
+
+        .tree-left {
+            left: 5%;
+        }
+
+        .tree-right {
+            right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="light-rays"></div>
+    <div class="nature-bg" id="natureBg"></div>
+    <div class="footer-decoration"></div>
+    <div class="tree-silhouette tree-left">🌲</div>
+    <div class="tree-silhouette tree-right">🌳</div>
+
+    <div class="card">
+        <div class="date" id="date"></div>
+        <div class="icon" id="icon">🌿</div>
+        <div class="divider"></div>
+        <p class="quote" id="quote"></p>
+        <div class="divider"></div>
+        <p class="subtitle">오늘도 당신을 응원합니다</p>
+    </div>
+
+    <script>
+        // 응원 문구 배열 (365일용 - 자연과 관련된 문구들)
+        const quotes = [
+            { text: "작은 씨앗도 언젠가 거대한 나무가 됩니다. 당신의 오늘도 그 시작입니다.", icon: "🌱" },
+            { text: "비 온 뒤에 땅이 굳어지듯, 시련 후에 당신은 더 단단해질 거예요.", icon: "🌧️" },
+            { text: "강물은 돌을 피하지 않고 감싸 안으며 흐릅니다. 당신도 그렇게 나아갈 수 있어요.", icon: "🏞️" },
+            { text: "아침 이슬처럼 오늘 하루도 맑고 투명하게 시작하세요.", icon: "💧" },
+            { text: "숲은 한 그루씩 자라나듯, 당신의 꿈도 조금씩 이루어지고 있어요.", icon: "🌲" },
+            { text: "바람이 불어야 연이 높이 납니다. 역경이 당신을 더 높이 날게 해줄 거예요.", icon: "🍃" },
+            { text: "꽃은 피기 전 오랜 시간 뿌리를 내립니다. 지금의 노력이 당신을 피우게 할 거예요.", icon: "🌸" },
+            { text: "나무는 천천히 자라지만, 결국 하늘에 닿습니다.", icon: "🌳" },
+            { text: "새벽이 가장 어두운 법입니다. 곧 당신에게도 밝은 아침이 올 거예요.", icon: "🌅" },
+            { text: "산은 오르는 사람에게만 정상을 보여줍니다.", icon: "⛰️" },
+            { text: "물은 낮은 곳으로 흐르며 바다를 이룹니다. 겸손함이 위대함을 만들어요.", icon: "🌊" },
+            { text: "별은 어둠이 있어야 빛납니다. 당신의 빛도 곧 빛날 거예요.", icon: "⭐" },
+            { text: "봄은 겨울을 이기고 옵니다. 당신의 봄도 분명히 올 거예요.", icon: "🌷" },
+            { text: "나비는 애벌레 시절을 부끄러워하지 않습니다.", icon: "🦋" },
+            { text: "뿌리 깊은 나무는 흔들리지 않습니다.", icon: "🌴" },
+            { text: "달은 이지러져도 다시 차오릅니다. 당신도 다시 일어날 수 있어요.", icon: "🌙" },
+            { text: "작은 시냇물도 모이면 큰 강이 됩니다.", icon: "💦" },
+            { text: "태양은 매일 뜹니다. 당신에게도 새로운 기회가 매일 찾아와요.", icon: "☀️" },
+            { text: "자연은 서두르지 않아도 모든 것을 이룹니다.", icon: "🍀" },
+            { text: "무지개는 비 온 뒤에만 볼 수 있습니다.", icon: "🌈" },
+            { text: "새싹은 땅을 뚫고 나올 만큼 강합니다. 당신도 그래요.", icon: "🌱" },
+            { text: "바다는 넓고 깊지만, 한 방울의 물에서 시작됩니다.", icon: "🐚" },
+            { text: "매화는 추위를 견디고 가장 먼저 핍니다.", icon: "🌺" },
+            { text: "나무는 폭풍에 흔들려도 뿌리가 있기에 쓰러지지 않습니다.", icon: "🌲" },
+            { text: "구름 위엔 항상 햇빛이 있습니다.", icon: "☁️" },
+            { text: "모든 꽃은 자신만의 때에 핍니다. 당신의 때도 올 거예요.", icon: "🌼" },
+            { text: "하늘을 나는 새도 처음엔 둥지에서 떨어졌습니다.", icon: "🐦" },
+            { text: "강은 굽이쳐 흘러도 결국 바다에 이릅니다.", icon: "🌅" },
+            { text: "눈 덮인 겨울에도 나무는 봄을 준비하고 있습니다.", icon: "❄️" },
+            { text: "대나무는 비어있기에 더 유연하고 강합니다.", icon: "🎋" },
+            { text: "폭포는 떨어지면서 더 힘을 얻습니다.", icon: "💧" }
+        ];
+
+        // 오늘 날짜에 맞는 문구 선택
+        function getDailyQuote() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            const index = dayOfYear % quotes.length;
+            return quotes[index];
+        }
+
+        // 날짜 포맷팅
+        function formatDate() {
+            const today = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            };
+            return today.toLocaleDateString('ko-KR', options);
+        }
+
+        // 나뭇잎 생성
+        function createLeaves() {
+            const bg = document.getElementById('natureBg');
+            for (let i = 0; i < 15; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.style.left = Math.random() * 100 + '%';
+                leaf.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                leaf.style.animationDelay = Math.random() * 15 + 's';
+                bg.appendChild(leaf);
+            }
+        }
+
+        // 초기화
+        function init() {
+            const quote = getDailyQuote();
+            document.getElementById('quote').textContent = quote.text;
+            document.getElementById('icon').textContent = quote.icon;
+            document.getElementById('date').textContent = formatDate();
+            createLeaves();
+        }
+
+        init();
+    </script>
+</body>
+</html>
